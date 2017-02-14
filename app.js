@@ -14,11 +14,6 @@ var jokes = {
   }
 }
 
-var stringifiedJokes = window.localStorage.getItem('jokes')
-if (stringifiedJokes != null) {
-  jokes = JSON.parse(stringifiedJokes)
-}
-
 // The message to display if the jokes object is empty
 var noJokesMessage = 'I... I don\'t know any jokes. 😢'
 
@@ -39,7 +34,13 @@ var updateJokesMenu = function () {
   var jokeKeys = Object.keys(jokes)
   var jokeKeyListItems = jokeKeys.join('</li><li>') || noJokesMessage
   jokesMenuList.innerHTML = '<li>' + jokeKeyListItems + '</li>'
-  var stringifiedJokes = JSON.stringify(jokes)
+
+  var stringifiedJokes = window.localStorage.getItem('jokes')
+  if (stringifiedJokes != null) {
+    jokes = JSON.parse(stringifiedJokes)
+  }
+
+  stringifiedJokes = JSON.stringify(jokes)
   if (stringifiedJokes != null) {
     window.localStorage.setItem('jokes', stringifiedJokes)
   }
