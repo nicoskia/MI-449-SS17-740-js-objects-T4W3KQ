@@ -39,6 +39,10 @@ var updateJokesMenu = function () {
   var jokeKeys = Object.keys(jokes)
   var jokeKeyListItems = jokeKeys.join('</li><li>') || noJokesMessage
   jokesMenuList.innerHTML = '<li>' + jokeKeyListItems + '</li>'
+  var stringifiedJokes = JSON.stringify(jokes)
+  if (stringifiedJokes != null) {
+    window.localStorage.setItem('jokes', stringifiedJokes)
+  }
 }
 
 // Update the displayed joke, based on the requested joke
@@ -59,10 +63,6 @@ var updateDisplayedJoke = function () {
 // page update functions, so that we
 // can call them all at once
 var updatePage = function () {
-  var stringifiedJokes = JSON.stringify(jokes)
-  if (stringifiedJokes != null) {
-    window.localStorage.setItem('jokes', stringifiedJokes)
-  }
   updateJokesMenu()
   updateDisplayedJoke()
   clearNewInput()
