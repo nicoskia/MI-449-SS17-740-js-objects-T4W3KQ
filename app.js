@@ -51,7 +51,7 @@ var requestedJokeInput = document.getElementById('requested-joke')
 var jokeBox = document.getElementById('joke-box')
 var updateDisplayedJoke = function () {
   var requestedJokeKey = requestedJokeInput.value
-  if ((jokes[requestedJokeKey] != null) || (requestedJokeInput = '')) {
+  if ((jokes[requestedJokeKey] != null) || (requestedJokeInput !== '')) {
     var setup = jokes[requestedJokeKey]['setup']
     var punchline = jokes[requestedJokeKey]['punchline']
     jokeBox.innerHTML = '<p>' + setup + '</p>' + '<p>' + punchline + '</p>'
