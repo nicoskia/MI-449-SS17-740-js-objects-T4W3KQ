@@ -15,7 +15,9 @@ var jokes = {
 }
 
 var stringifiedJokes = window.localStorage.getItem('jokes')
-jokes = JSON.parse(stringifiedJokes)
+if (stringifiedJokes != null) {
+  jokes = JSON.parse(stringifiedJokes)
+}
 
 // The message to display if the jokes object is empty
 var noJokesMessage = 'I... I don\'t know any jokes. 😢'
@@ -58,7 +60,9 @@ var updateDisplayedJoke = function () {
 // can call them all at once
 var updatePage = function () {
   var stringifiedJokes = JSON.stringify(jokes)
-  window.localStorage.setItem('jokes', stringifiedJokes)
+  if (stringifiedJokes != null) {
+    window.localStorage.setItem('jokes', stringifiedJokes)
+  }
   updateJokesMenu()
   updateDisplayedJoke()
   clearNewInput()
