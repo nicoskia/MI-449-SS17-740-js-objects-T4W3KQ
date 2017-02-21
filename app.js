@@ -35,14 +35,14 @@ var updateJokesMenu = function () {
   var jokeKeyListItems = jokeKeys.join('</li><li>') || noJokesMessage
   jokesMenuList.innerHTML = '<li>' + jokeKeyListItems + '</li>'
 
-  var stringifiedJokes = window.localStorage.getItem('jokes')
-  if (stringifiedJokes != null) {
-    jokes = JSON.parse(stringifiedJokes)
+  var stringifiedJokesGet = window.localStorage.getItem('jokes')
+  if (stringifiedJokesGet != null) {
+    jokes = JSON.parse(stringifiedJokesGet)
   }
 
-  stringifiedJokes = JSON.stringify(jokes)
-  if (stringifiedJokes != null) {
-    window.localStorage.setItem('jokes', stringifiedJokes)
+  var stringifiedJokesSet = JSON.stringify(jokes)
+  if (stringifiedJokesSet != null) {
+    window.localStorage.setItem('jokes', stringifiedJokesSet)
   }
 }
 
