@@ -35,20 +35,21 @@ var updateJokesMenu = function () {
   var jokeKeyListItems = jokeKeys.join('</li><li>') || noJokesMessage
   jokesMenuList.innerHTML = '<li>' + jokeKeyListItems + '</li>'
 
-  var stringifiedJokesGet = window.localStorage.getItem('jokes')
-  if (stringifiedJokesGet != null) {
-    jokes = JSON.parse(stringifiedJokesGet)
+  var stringifiedJokes = window.localStorage.getItem('jokes')
+  if (stringifiedJokes != null) {
+    jokes = JSON.parse(stringifiedJokes)
   }
 
-  var stringifiedJokesSet = JSON.stringify(jokes)
-  if (stringifiedJokesSet != null) {
-    window.localStorage.setItem('jokes', stringifiedJokesSet)
+  stringifiedJokes = JSON.stringify(jokes)
+  if (stringifiedJokes != null) {
+    window.localStorage.setItem('jokes', stringifiedJokes)
   }
 }
 
 // Update the displayed joke, based on the requested joke
 var requestedJokeInput = document.getElementById('requested-joke')
 var jokeBox = document.getElementById('joke-box')
+
 var updateDisplayedJoke = function () {
   var requestedJokeKey = requestedJokeInput.value
   if ((typeof jokes[requestedJokeKey] !== undefined) && (jokes[requestedJokeKey] != null)) {
