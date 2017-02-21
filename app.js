@@ -85,6 +85,7 @@ var clearNewInput = function () {
 btnForget.addEventListener('click', function () {
   var jokeForget = document.getElementById('jokeForget').value
   delete jokes[jokeForget]
+  setJokes()
   updatePage()
 })
 
