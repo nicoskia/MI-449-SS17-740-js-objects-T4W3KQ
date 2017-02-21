@@ -88,6 +88,7 @@ btnRemember.addEventListener('click', function () {
   var jokeSetup = document.getElementById('setup').value
   var jokePunchline = document.getElementById('punchline').value
   jokes[jokeRemember] = {setup: jokeSetup, punchline: jokePunchline}
+  console.log(jokes)
   updatePage()
 })
 
