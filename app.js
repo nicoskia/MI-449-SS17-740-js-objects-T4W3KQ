@@ -28,6 +28,13 @@ var btnRemember = document.getElementById('remember')
 // Update the listed jokes, based on the jokes object
 var jokesMenuList = document.getElementById('jokes-menu')
 var updateJokesMenu = function () {
+  // Don't worry too much about this code for now.
+  // You'll learn how to do advanced stuff like
+  // this in a later lesson.
+  var jokeKeys = Object.keys(jokes)
+  var jokeKeyListItems = jokeKeys.join('</li><li>') || noJokesMessage
+  jokesMenuList.innerHTML = '<li>' + jokeKeyListItems + '</li>'
+
   var stringifiedJokesGet = window.localStorage.getItem('jokes')
   if (stringifiedJokesGet != null) {
     jokes = JSON.parse(stringifiedJokesGet)
@@ -37,12 +44,6 @@ var updateJokesMenu = function () {
   if (stringifiedJokesSet != null) {
     window.localStorage.setItem('jokes', stringifiedJokesSet)
   }
-  // Don't worry too much about this code for now.
-  // You'll learn how to do advanced stuff like
-  // this in a later lesson.
-  var jokeKeys = Object.keys(jokes)
-  var jokeKeyListItems = jokeKeys.join('</li><li>') || noJokesMessage
-  jokesMenuList.innerHTML = '<li>' + jokeKeyListItems + '</li>'
 }
 
 // Update the displayed joke, based on the requested joke
