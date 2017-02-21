@@ -25,6 +25,13 @@ var btnRemember = document.getElementById('remember')
 // PAGE UPDATERS
 // -------------
 
+var setJokes = function () {
+  var stringifiedJokes = JSON.stringify(jokes)
+  if (stringifiedJokes != null) {
+    window.localStorage.setItem('jokes', stringifiedJokes)
+  }
+}
+
 // Update the listed jokes, based on the jokes object
 var jokesMenuList = document.getElementById('jokes-menu')
 var updateJokesMenu = function () {
@@ -38,11 +45,6 @@ var updateJokesMenu = function () {
   var stringifiedJokes = window.localStorage.getItem('jokes')
   if (stringifiedJokes != null) {
     jokes = JSON.parse(stringifiedJokes)
-  }
-
-  stringifiedJokes = JSON.stringify(jokes)
-  if (stringifiedJokes != null) {
-    window.localStorage.setItem('jokes', stringifiedJokes)
   }
 }
 
@@ -88,7 +90,7 @@ btnRemember.addEventListener('click', function () {
   var jokeSetup = document.getElementById('setup').value
   var jokePunchline = document.getElementById('punchline').value
   jokes[jokeRemember] = {setup: jokeSetup, punchline: jokePunchline}
-  console.log(jokes)
+  setJokes()
   updatePage()
 })
 
