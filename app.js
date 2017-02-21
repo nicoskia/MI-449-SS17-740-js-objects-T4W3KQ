@@ -32,6 +32,13 @@ var setJokes = function () {
   }
 }
 
+var getJokes = function () {
+  var stringifiedJokes = window.localStorage.getItem('jokes')
+  if (stringifiedJokes != null) {
+    jokes = JSON.parse(stringifiedJokes)
+  }
+}
+
 // Update the listed jokes, based on the jokes object
 var jokesMenuList = document.getElementById('jokes-menu')
 var updateJokesMenu = function () {
@@ -41,11 +48,6 @@ var updateJokesMenu = function () {
   var jokeKeys = Object.keys(jokes)
   var jokeKeyListItems = jokeKeys.join('</li><li>') || noJokesMessage
   jokesMenuList.innerHTML = '<li>' + jokeKeyListItems + '</li>'
-
-  var stringifiedJokes = window.localStorage.getItem('jokes')
-  if (stringifiedJokes != null) {
-    jokes = JSON.parse(stringifiedJokes)
-  }
 }
 
 // Update the displayed joke, based on the requested joke
@@ -67,6 +69,7 @@ var updateDisplayedJoke = function () {
 // page update functions, so that we
 // can call them all at once
 var updatePage = function () {
+  getJokes()
   updateJokesMenu()
   updateDisplayedJoke()
   clearNewInput()
