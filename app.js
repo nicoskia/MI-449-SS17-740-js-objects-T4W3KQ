@@ -30,6 +30,7 @@ var setJokes = function () {
   if (stringifiedJokes != null) {
     window.localStorage.setItem('jokes', stringifiedJokes)
   }
+  updatePage()
 }
 
 var getJokes = function () {
@@ -56,10 +57,11 @@ var jokeBox = document.getElementById('joke-box')
 
 var updateDisplayedJoke = function () {
   var requestedJokeKey = requestedJokeInput.value
-  if ((typeof jokes[requestedJokeKey] !== undefined) && (jokes[requestedJokeKey] != null)) {
-    var setup = jokes[requestedJokeKey]['setup']
-    var punchline = jokes[requestedJokeKey]['punchline']
-    jokeBox.innerHTML = '<p>' + setup + '</p>' + '<p>' + punchline + '</p>'
+  var requestedJoke = jokes[requestedJokeKey]
+  if (requestedJoke) {
+    jokeBox.innerHTML =
+      '<p>' + requestedJoke.setup + '</p>' +
+      '<p>' + requestedJoke.punchline + '</p>'
   } else {
     jokeBox.textContent = 'No matching joke found.'
   }
@@ -86,7 +88,6 @@ btnForget.addEventListener('click', function () {
   var jokeForget = document.getElementById('jokeForget').value
   delete jokes[jokeForget]
   setJokes()
-  updatePage()
 })
 
 btnRemember.addEventListener('click', function () {
@@ -95,7 +96,6 @@ btnRemember.addEventListener('click', function () {
   var jokePunchline = document.getElementById('punchline').value
   jokes[jokeRemember] = {setup: jokeSetup, punchline: jokePunchline}
   setJokes()
-  updatePage()
 })
 
 // -------
