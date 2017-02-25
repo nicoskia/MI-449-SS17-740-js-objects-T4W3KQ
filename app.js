@@ -84,6 +84,19 @@ var clearNewInput = function () {
   document.getElementById('punchline').value = ''
 }
 
+// -------
+// STARTUP
+// -------
+
+// Update the page immediately on startup
+updatePage()
+// ---------------
+// EVENT LISTENERS
+// ---------------
+
+// Keep the requested joke up-to-date
+requestedJokeInput.addEventListener('input', updateDisplayedJoke)
+
 btnForget.addEventListener('click', function () {
   var jokeForget = document.getElementById('jokeForget').value
   delete jokes[jokeForget]
@@ -97,16 +110,3 @@ btnRemember.addEventListener('click', function () {
   jokes[jokeRemember] = {setup: jokeSetup, punchline: jokePunchline}
   setJokes()
 })
-
-// -------
-// STARTUP
-// -------
-
-// Update the page immediately on startup
-updatePage()
-// ---------------
-// EVENT LISTENERS
-// ---------------
-
-// Keep the requested joke up-to-date
-requestedJokeInput.addEventListener('input', updateDisplayedJoke)
